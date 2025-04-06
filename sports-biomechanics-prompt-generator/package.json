@@ -1,0 +1,30 @@
+{
+  "name": "sports-biomechanics-prompt-generator",
+  "version": "1.0.0",
+  "description": "A React project for generating prompts related to sports biomechanics, including various biomechanics categories, muscles, bones, and human body positions.",
+  "main": "src/index.tsx",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "typescript": "^4.1.2"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.2"
+  },
+  "keywords": [
+    "biomechanics",
+    "sports",
+    "prompt generator",
+    "react"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
