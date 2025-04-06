@@ -100,6 +100,36 @@ function getRandomExercise() {
     return exercises[Math.floor(Math.random() * exercises.length)];
 }
 
+// 辅助函数，生成随机运动方式
+function getRandomMovement() {
+    const movements = ['屈曲', '伸展', '内收', '外展', '旋转', '绕环', '推', '拉', '抬举', '下蹲'];
+    return movements[Math.floor(Math.random() * movements.length)];
+}
+
+// 辅助函数，生成随机协同肌
+function getRandomSynergist() {
+    const synergists = ['周围小肌群', '深层稳定肌', '姿势肌', '协同肌群', '附近的固定肌'];
+    return synergists[Math.floor(Math.random() * synergists.length)];
+}
+
+// 辅助函数，生成随机拮抗肌
+function getRandomAntagonist() {
+    const antagonists = ['对侧肌群', '拮抗肌', '反向作用肌', '对应的平衡肌'];
+    return antagonists[Math.floor(Math.random() * antagonists.length)];
+}
+
+// 辅助函数，生成随机收缩方式
+function getRandomContraction() {
+    const contractions = ['向心收缩', '离心收缩', '等长收缩', '等速收缩', '爆发性收缩', '持续性收缩'];
+    return contractions[Math.floor(Math.random() * contractions.length)];
+}
+
+// 辅助函数，生成随机运动表现
+function getRandomPerformance() {
+    const performances = ['爆发力', '耐力', '速度', '协调性', '平衡性', '灵活性', '反应速度', '技术动作'];
+    return performances[Math.floor(Math.random() * performances.length)];
+}
+
 const PromptForm: React.FC<PromptFormProps> = ({ onGeneratePrompts }) => {
     const [selectedRegion, setSelectedRegion] = useState<string>('');
     const [selectedType, setSelectedType] = useState<string>('');
@@ -123,15 +153,28 @@ const PromptForm: React.FC<PromptFormProps> = ({ onGeneratePrompts }) => {
             const type = selectedType;
             const structure = selectedStructure;
             
-            const generatedPrompts = [
-                `在进行${getRandomSport()}运动时，${region}区域的${structure}被积极参与活动，是完成动作的关键${type}。`,
-                `在康复训练中，针对${structure}的强化练习可以帮助恢复${region}区域的功能，建议进行${getRandomRehab()}。`,
-                `${structure}在${getRandomSport()}运动中起到了重要的${getRandomFunction()}作用，是运动生物力学分析的重点。`,
-                `运动员在训练${region}区域时，应特别注意${structure}的发力模式，可以通过${getRandomExercise()}来加强。`,
-                `${getRandomSport()}需要${structure}的有效参与，这对于保持${region}区域的稳定性和力量至关重要。`
-            ];
-            
-            onGeneratePrompts(generatedPrompts);
+            // 仅当选择的是肌肉时生成主动肌相关提示词
+            if (type.includes("肌肉")) {
+                const generatedPrompts = [
+                    `在${getRandomSport()}运动中，${structure}作为主动肌参与${region}区域的${getRandomMovement()}，负责产生主要动力。`,
+                    `${structure}是${getRandomSport()}中的主要主动肌，同时需要${getRandomSynergist()}作为协同肌配合工作，${getRandomAntagonist()}则作为拮抗肌提供稳定。`,
+                    `运动生物力学分析表明，${structure}在${getRandomMovement()}动作中扮演主动肌角色，通过${getRandomContraction()}方式产生力量。`,
+                    `训练${structure}作为主动肌的爆发力，对提高${getRandomSport()}的${getRandomPerformance()}至关重要，建议采用${getRandomExercise()}。`,
+                    `在康复训练初期，可先强化${structure}的主动肌功能，通过${getRandomRehab()}逐步恢复其在${region}区域的正常活动能力。`
+                ];
+                onGeneratePrompts(generatedPrompts);
+            } 
+            // 如果选择的是骨骼，则生成与骨骼相关的提示词
+            else if (type.includes("骨骼")) {
+                const generatedPrompts = [
+                    `${structure}作为${region}区域的重要支撑结构，在${getRandomSport()}中为附着在其上的主动肌提供稳定的支点。`,
+                    `在运动生物力学分析中，${structure}的形态特征决定了附着在其上的主动肌的力臂长度，影响力矩产生。`,
+                    `${getRandomSport()}运动时，附着在${structure}上的主动肌通过肌腱产生拉力，带动骨骼活动。`,
+                    `运动损伤后，${structure}周围的主动肌和拮抗肌力量平衡可能被打破，需要通过${getRandomRehab()}恢复。`,
+                    `${structure}与相关关节一起为主动肌提供了活动的骨性支架，是力量传递的关键结构。`
+                ];
+                onGeneratePrompts(generatedPrompts);
+            }
         }
     };
 
