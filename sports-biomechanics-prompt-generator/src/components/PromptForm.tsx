@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './PromptForm.css';
 
 interface PromptFormProps {
     onGeneratePrompts: (newPrompts: string[]) => void;
@@ -154,8 +155,29 @@ const PromptForm: React.FC<PromptFormProps> = ({ onGeneratePrompts }) => {
 
     return (
         <form onSubmit={handleSubmit} className="prompt-form">
+            <h2 className="form-title">运动生物力学提示词生成器</h2>
+            
+            {/* 显示当前选择路径 */}
+            {selectedRegion && (
+                <div className="selection-path">
+                    <strong>{selectedRegion}</strong>
+                    {selectedType && (
+                        <>
+                            <span>→</span>
+                            <strong>{selectedType}</strong>
+                        </>
+                    )}
+                    {selectedStructure && (
+                        <>
+                            <span>→</span>
+                            <strong>{selectedStructure}</strong>
+                        </>
+                    )}
+                </div>
+            )}
+            
             <div className="form-group">
-                <label htmlFor="region-select">选择身体区域:</label>
+                <label htmlFor="region-select" className="form-label">选择身体区域:</label>
                 <select
                     id="region-select"
                     value={selectedRegion}
@@ -173,7 +195,7 @@ const PromptForm: React.FC<PromptFormProps> = ({ onGeneratePrompts }) => {
 
             {selectedRegion && (
                 <div className="form-group">
-                    <label htmlFor="type-select">选择结构类型:</label>
+                    <label htmlFor="type-select" className="form-label">选择结构类型:</label>
                     <select
                         id="type-select"
                         value={selectedType}
@@ -192,7 +214,7 @@ const PromptForm: React.FC<PromptFormProps> = ({ onGeneratePrompts }) => {
 
             {selectedRegion && selectedType && (
                 <div className="form-group">
-                    <label htmlFor="structure-select">选择具体结构:</label>
+                    <label htmlFor="structure-select" className="form-label">选择具体结构:</label>
                     <select
                         id="structure-select"
                         value={selectedStructure}

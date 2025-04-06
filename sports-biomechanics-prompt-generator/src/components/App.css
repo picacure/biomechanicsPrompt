@@ -3,6 +3,44 @@ body {
   font-family: Arial, sans-serif;
 }
 
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 15px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 h1 {
-  color: #333;
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+.prompts-container {
+  margin-top: 30px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.prompt-item {
+  margin-bottom: 15px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 6px;
+  border-left: 4px solid #3498db;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .app-container {
+    padding: 15px 10px;
+  }
+  
+  h1 {
+    font-size: 24px;
+  }
 }
