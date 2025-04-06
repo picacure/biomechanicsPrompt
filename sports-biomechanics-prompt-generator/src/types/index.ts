@@ -1,26 +1,29 @@
 // filepath: /sports-biomechanics-prompt-generator/sports-biomechanics-prompt-generator/src/types/index.ts
+// Define muscle type
 export interface Muscle {
+    id: string;
     name: string;
+    category: string;
     type: 'agonist' | 'synergist' | 'antagonist';
-    description: string;
+    region: string;
+    description?: string;
 }
 
+// Define bone type
 export interface Bone {
+    id: string;
     name: string;
-    location: string;
-    description: string;
+    category: string;
+    region: string;
+    description?: string;
 }
 
-export interface BodyPosition {
-    name: string;
-    description: string;
-    examples: string[];
-}
-
-export interface Prompt {
+// Define position type
+export interface Position {
+    id: string;
     action: string;
-    agonistMuscles: Muscle[];
-    synergistMuscles: Muscle[];
-    antagonistMuscles: Muscle[];
-    bodyPosition: BodyPosition;
+    description: string;
+    bodyParts: string[];
+    relatedMuscles?: string[];
+    relatedBones?: string[];
 }

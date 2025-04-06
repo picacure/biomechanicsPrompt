@@ -14,7 +14,7 @@ const App: React.FC = () => {
         <div className="app-container">
             <h1>Sports Biomechanics Prompt Generator</h1>
             <PromptForm onGeneratePrompts={handleGeneratePrompts} />
-            <PromptDisplay prompts={prompts} />
+            <PromptDisplay prompt={prompts} />
         </div>
     );
 };
